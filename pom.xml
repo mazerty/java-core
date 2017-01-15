@@ -20,6 +20,7 @@
         <vaadin.version>7.7.6</vaadin.version>
         <vaadin.cdi.version>1.0.3</vaadin.cdi.version>
         <jooq.version>3.9.0</jooq.version>
+        <commons.lang.version>3.5</commons.lang.version>
         <javaslang.version>2.0.5</javaslang.version>
         <jbcrypt.version>0.4.1</jbcrypt.version>
         <junit.version>4.12</junit.version>
@@ -65,6 +66,11 @@
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq</artifactId>
                 <version>${jooq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.javaslang</groupId>
