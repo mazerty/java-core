@@ -21,7 +21,6 @@
         <vaadin.cdi.version>1.0.3</vaadin.cdi.version>
         <jooq.version>3.9.0</jooq.version>
         <commons.lang.version>3.5</commons.lang.version>
-        <javaslang.version>2.0.5</javaslang.version>
         <jbcrypt.version>0.4.1</jbcrypt.version>
         <junit.version>4.12</junit.version>
         <arquillian.junit.container.version>1.1.11.Final</arquillian.junit.container.version>
@@ -71,11 +70,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.javaslang</groupId>
-                <artifactId>javaslang</artifactId>
-                <version>${javaslang.version}</version>
             </dependency>
             <dependency>
                 <groupId>de.svenkubiak</groupId>
