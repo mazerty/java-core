@@ -7,9 +7,31 @@
     <groupId>fr.mazerty</groupId>
     <artifactId>core</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <description>Parent POM for all my Java-based projects</description>
 
     <packaging>pom</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Parent POM for all my Java-based projects</description>
+    <url>https://github.com/mazerty/java-core</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>mazerty</id>
+            <name>Thomas JOUANNOT</name>
+            <email>mazerty@gmail.com</email>
+            <url>https://github.com/mazerty</url>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/mazerty/java-core.git</connection>
+        <developerConnection>scm:git:git@github.com:mazerty/java-core.git</developerConnection>
+        <url>https://github.com/mazerty/java-core</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,6 +56,7 @@
         <wildfly.plugin.version>1.1.0.Final</wildfly.plugin.version>
         <flyway.plugin.version>4.2.0</flyway.plugin.version>
         <postgresql.jdbc.version>42.1.1</postgresql.jdbc.version>
+        <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -165,5 +188,38 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven.gpg.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>nexus</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
 </project>
