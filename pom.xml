@@ -33,6 +33,13 @@
         <url>https://github.com/mazerty/java-core</url>
     </scm>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -57,6 +64,7 @@
         <flyway.plugin.version>4.2.0</flyway.plugin.version>
         <postgresql.jdbc.version>42.1.1</postgresql.jdbc.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+        <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -207,18 +215,19 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus.staging.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>nexus</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>nexus</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-                <repository>
-                    <id>nexus</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-                </repository>
-            </distributionManagement>
         </profile>
     </profiles>
 
